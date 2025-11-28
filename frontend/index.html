@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détecteur de Risque Cyclonique</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="container">
+        <header>
+            <h1>Détecteur de Risque Cyclonique</h1>
+            <p>Entrez des coordonnées dans l'Océan Indien pour analyser le risque cyclonique sur 4 jours.</p>
+        </header>
+
+        <section class="card">
+            <div class="form-group">
+                <label for="latitude">Latitude</label>
+                <input type="text" id="latitude" placeholder="-21.1151" value="-21.1151">
+            </div>
+            <div class="form-group">
+                <label for="longitude">Longitude</label>
+                <input type="text" id="longitude" placeholder="55.5364" value="55.5364">
+            </div>
+            <button id="analyze-btn">Analyser</button>
+        </section>
+
+        <section id="result-container" class="card result-card" style="display: none;">
+            <h2>Résultat de l'analyse</h2>
+            <div id="result">
+                <!-- Le résultat sera injecté ici par JavaScript -->
+            </div>
+            <div id="spinner" class="spinner" style="display: none;"></div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

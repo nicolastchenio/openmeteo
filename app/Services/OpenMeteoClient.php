@@ -85,9 +85,14 @@ class OpenMeteoClient
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::CONNECT_TIMEOUT);
         curl_setopt($ch, CURLOPT_TIMEOUT, self::REQUEST_TIMEOUT);
-        // Recommandé pour la production : gestion de la vérification SSL
-        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-        // curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        
+        // DÉSACTIVATION POUR DÉVELOPPEMENT LOCAL
+        // Sur de nombreuses configurations locales (surtout Windows), PHP/cURL ne trouve pas
+        // le bundle de certificats CA, ce qui fait échouer les appels HTTPS.
+        // La ligne suivante contourne ce problème.
+        // **NE JAMAIS UTILISER EN PRODUCTION** car cela expose à des attaques "man-in-the-middle".
+        // En production, il faut configurer cURL pour utiliser un fichier cacert.pem valide.
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
